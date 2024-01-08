@@ -7,8 +7,7 @@ public class AddressBookMain {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        char choice;
-        do {
+        while(true) {
             System.out.println("Menu:");
             System.out.println("1. Create a new Address Book");
             System.out.println("2. Add a contact to an Address Book");
@@ -60,10 +59,8 @@ public class AddressBookMain {
                 default:
                     System.out.println("Invalid option. Please choose a valid option");
             }
+        }
 
-            System.out.println("Do you want to continue? (Y/N)");
-            choice = sc.nextLine().charAt(0);
-        } while(choice == 'Y' || choice == 'y');
     }
 
     private static void createAddressBook(Scanner sc) {
@@ -209,6 +206,7 @@ public class AddressBookMain {
     }
 
     private static void countByCity(Scanner sc) {
+        System.out.println("Enter the city name to search");
         String city = sc.nextLine();
         long count = addressBooks.values().stream()
                 .flatMap(addrressBook -> addrressBook.getContactsInCity(city).stream()).count();
@@ -216,6 +214,7 @@ public class AddressBookMain {
     }
 
     private static void countByState(Scanner sc) {
+        System.out.println("Enter the state name to search");
         String state = sc.nextLine();
         long count = addressBooks.values().stream()
                 .flatMap(addrressBook -> addrressBook.getContactsInState(state).stream()).count();
